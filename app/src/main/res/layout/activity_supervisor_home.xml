@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Supervisor_Home">
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/black"/>
+
+    <ImageView
+        android:id="@+id/QR_Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="100dp"
+        android:contentDescription="@string/app_name" />
+    <Button
+        android:layout_weight="1"
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+    <Button
+        android:layout_weight="1"
+        android:id="@+id/pdfBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PDF" />
+
+    <Button
+        android:id="@+id/printBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Print"/>
+
+
+
+
+
+
+</LinearLayout>
