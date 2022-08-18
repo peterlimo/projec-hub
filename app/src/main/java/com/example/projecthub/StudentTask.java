@@ -41,7 +41,7 @@ public class StudentTask extends AppCompatActivity {
     String linkImg, linkDoc;
 
     UploadData uploadData;
-
+//Initialize the database reference
     StorageReference storageReference;
     DatabaseReference databaseReference;
 
@@ -49,11 +49,14 @@ public class StudentTask extends AppCompatActivity {
     //Doc request code..
     final static int PICK_DOC_CODE = 2342;
 
+//    Initialize the progress dialog
 
     ProgressDialog progressDialog;
     SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy");
     Date date = new Date();
 
+
+//    Onactivity result for the selected image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -72,8 +75,7 @@ public class StudentTask extends AppCompatActivity {
         //Handling the data from other apps without user interaction...
         ContentResolver contentResolver = getContentResolver();
 
-        return
-                mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
     @Override
@@ -88,197 +90,124 @@ public class StudentTask extends AppCompatActivity {
         up_data = findViewById(R.id.up_data);
 
         uploadData = new UploadData();
-
+//Initialize the declared variables
         progressDialog = new ProgressDialog(StudentTask.this);
         storageReference = FirebaseStorage.getInstance().getReference("Student Task");
         databaseReference = FirebaseDatabase.getInstance().getReference("Students Task");
 
-        attach_doc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("application/pdf");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Pick the doc"), PICK_DOC_CODE);
-            }
+        attach_doc.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.setType("application/pdf");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Pick the doc"), PICK_DOC_CODE);
         });
-        addImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Pick the Image"), Image_Request_Code);
-            }
+        addImg.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Pick the Image"), Image_Request_Code);
         });
-        up_data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressDialog.setTitle("Uploading your data");
-                progressDialog.show();
+        up_data.setOnClickListener(view -> {
+            progressDialog.setTitle("Uploading your data");
+            progressDialog.show();
 
-                if (ImgPathUri == null && DocPathUri == null){
-                    String info = infoText.getText().toString();
+            if (ImgPathUri == null && DocPathUri == null){
+                String info = infoText.getText().toString();
 
-                    uploadData.setActual(formatter.format(date));
-                    uploadData.setInfo(info);
-                    uploadData.setDocURL(null);
-                    uploadData.setImgURL(null);
+                uploadData.setActual(formatter.format(date));
+                uploadData.setInfo(info);
+                uploadData.setDocURL(null);
+                uploadData.setImgURL(null);
 
-                    databaseReference.child(formatter.format(date)).setValue(uploadData);
+                databaseReference.child(formatter.format(date)).setValue(uploadData);
 
-                    progressDialog.dismiss();
-
-                }
-                if (ImgPathUri != null && DocPathUri == null){
-                    StorageReference str = storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(ImgPathUri));
-                    str.putFile(ImgPathUri)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    taskSnapshot.getStorage().getDownloadUrl()
-                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    String ImgLink=uri.toString();
-                                                    linkImg=ImgLink;
-
-                                                    String info=infoText.getText().toString();
-
-                                                    uploadData.setInfo(info);
-                                                    uploadData.setImgURL(linkImg);
-                                                    uploadData.setDocURL(null);
-                                                    uploadData.setActual(formatter.format(date));
-
-                                                    databaseReference.child(formatter.format(date)).setValue(uploadData);
-
-                                                    progressDialog.dismiss();
-
-                                                }
-                                            });
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-
-                                    Toast.makeText(StudentTask.this, "Img Upload failed", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-                }
-                if(DocPathUri!=null && ImgPathUri==null){
-
-                    StorageReference str=storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(DocPathUri));
-
-                    str.putFile(DocPathUri)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                    taskSnapshot.getStorage().getDownloadUrl()
-                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    String DocLink=uri.toString();
-                                                    linkDoc=DocLink;
-
-                                                    String info=infoText.getText().toString();
-
-                                                    uploadData.setActual(formatter.format(date));
-                                                    uploadData.setInfo(info);
-                                                    uploadData.setDocURL(linkDoc);
-                                                    uploadData.setImgURL(null);
-
-                                                    databaseReference.child(formatter.format(date)).setValue(uploadData);
-
-                                                    progressDialog.dismiss();
-                                                }
-                                            });
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(StudentTask.this, "Doc upload failed", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-                if(ImgPathUri!=null && DocPathUri!=null){
-                    StorageReference str=storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(ImgPathUri));
-
-                    str.putFile(ImgPathUri)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    taskSnapshot.getStorage().getDownloadUrl()
-                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    String ImgLink=uri.toString();
-                                                    linkImg=ImgLink;
-                                                    Toast.makeText(StudentTask.this, linkImg, Toast.LENGTH_SHORT).show();
-                                                    uploadData.setImgURL(linkImg);
-
-                                                    if(DocPathUri!=null){
-                                                        StorageReference storageReference1=storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(DocPathUri));
-
-                                                        storageReference1.putFile(DocPathUri)
-                                                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                                                    @Override
-                                                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                                        taskSnapshot.getStorage().getDownloadUrl()
-                                                                                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                                                    @Override
-                                                                                    public void onSuccess(Uri uri) {
-                                                                                        String DocLink=uri.toString();
-                                                                                        linkDoc=DocLink;
-                                                                                        uploadData.setDocURL(linkDoc);
-                                                                                        String info=infoText.getText().toString();
-
-                                                                                        uploadData.setInfo(info);
-                                                                                        uploadData.setActual(formatter.format(date));
-
-                                                                                        databaseReference.child(formatter.format(date)).setValue(uploadData);
-
-                                                                                        progressDialog.dismiss();
-                                                                                    }
-                                                                                })
-                                                                                .addOnFailureListener(new OnFailureListener() {
-                                                                                    @Override
-                                                                                    public void onFailure(@NonNull Exception e) {
-                                                                                        Log.e("TAG_FOR_FAILURE LOG", "On Failure: The exception", e);
-                                                                                    }
-                                                                                });
-                                                                    }
-                                                                })
-                                                                .addOnFailureListener(new OnFailureListener() {
-                                                                    @Override
-                                                                    public void onFailure(@NonNull Exception e) {
-                                                                        Toast.makeText(StudentTask.this, "doc fucked", Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                });
-                                                    }
-                                                }
-                                            });
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(StudentTask.this, "fucked ra", Toast.LENGTH_SHORT).show();
-                                }
-                            })
-                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-
-                                }
-                            });
-
-                }
+                progressDialog.dismiss();
 
             }
+
+            if (ImgPathUri != null && DocPathUri == null){
+                StorageReference str = storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(ImgPathUri));
+                str.putFile(ImgPathUri).addOnSuccessListener(taskSnapshot -> taskSnapshot.getStorage().getDownloadUrl()
+                        .addOnSuccessListener(uri -> {
+                            String ImgLink=uri.toString();
+                            linkImg=ImgLink;
+
+                            String info=infoText.getText().toString();
+
+                            uploadData.setInfo(info);
+                            uploadData.setImgURL(linkImg);
+                            uploadData.setDocURL(null);
+                            uploadData.setActual(formatter.format(date));
+
+                            databaseReference.child(formatter.format(date)).setValue(uploadData);
+
+                            progressDialog.dismiss();
+
+                        }))
+                        .addOnFailureListener(e -> Toast.makeText(StudentTask.this, "Img Upload failed", Toast.LENGTH_SHORT).show());
+
+            }
+            if(DocPathUri!=null && ImgPathUri==null){
+
+                StorageReference str=storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(DocPathUri));
+
+                str.putFile(DocPathUri)
+                        .addOnSuccessListener(taskSnapshot -> taskSnapshot.getStorage().getDownloadUrl()
+                                .addOnSuccessListener(uri -> {
+                                    String DocLink=uri.toString();
+                                    linkDoc=DocLink;
+
+                                    String info=infoText.getText().toString();
+
+                                    uploadData.setActual(formatter.format(date));
+                                    uploadData.setInfo(info);
+                                    uploadData.setDocURL(linkDoc);
+                                    uploadData.setImgURL(null);
+
+                                    databaseReference.child(formatter.format(date)).setValue(uploadData);
+
+                                    progressDialog.dismiss();
+                                }))
+                        .addOnFailureListener(e -> Toast.makeText(StudentTask.this, "Doc upload failed", Toast.LENGTH_SHORT).show());
+            }
+            if(ImgPathUri!=null && DocPathUri!=null){
+                StorageReference str=storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(ImgPathUri));
+
+                str.putFile(ImgPathUri)
+                        .addOnSuccessListener(taskSnapshot -> taskSnapshot.getStorage().getDownloadUrl()
+                                .addOnSuccessListener(uri -> {
+                                    String ImgLink=uri.toString();
+                                    linkImg=ImgLink;
+                                    Toast.makeText(StudentTask.this, linkImg, Toast.LENGTH_SHORT).show();
+                                    uploadData.setImgURL(linkImg);
+                                    if(DocPathUri!=null){
+                                        StorageReference storageReference1=storageReference.child(StoragePath + System.currentTimeMillis() + "." + getExtension(DocPathUri));
+
+                                        storageReference1.putFile(DocPathUri)
+                                                .addOnSuccessListener(taskSnapshot1 -> taskSnapshot1.getStorage().getDownloadUrl()
+                                                        .addOnSuccessListener(uri1 -> {
+                                                            String DocLink= uri1.toString();
+                                                            linkDoc=DocLink;
+                                                            uploadData.setDocURL(linkDoc);
+                                                            String info=infoText.getText().toString();
+
+                                                            uploadData.setInfo(info);
+                                                            uploadData.setActual(formatter.format(date));
+
+                                                            databaseReference.child(formatter.format(date)).setValue(uploadData);
+
+                                                            progressDialog.dismiss();
+                                                        }).addOnFailureListener(e -> Log.e("TAG_FOR_FAILURE LOG", "On Failure: The exception", e)))
+                                                .addOnFailureListener(e -> Toast.makeText(StudentTask.this, "doc fucked", Toast.LENGTH_SHORT).show());
+                                    }
+                                }))
+                        .addOnFailureListener(e -> Toast.makeText(StudentTask.this, "Failed!!", Toast.LENGTH_SHORT).show())
+                        .addOnProgressListener(snapshot -> {
+
+                        });
+
+            }
+
         });
 
 

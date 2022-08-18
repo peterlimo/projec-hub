@@ -54,16 +54,13 @@ public class LoginStudent extends AppCompatActivity {
             LoginPassword.setError("Password cannot be empty");
             LoginPassword.requestFocus();
         } else {
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(LoginStudent.this, "User logged in successfully",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginStudent.this,Student_Home.class));
-                        //finish();
-                    } else {
-                        Toast.makeText(LoginStudent.this, "Log in Error: " +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                    }
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()){
+                    Toast.makeText(LoginStudent.this, "User logged in successfully",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginStudent.this,Student_Home.class));
+                    //finish();
+                } else {
+                    Toast.makeText(LoginStudent.this, "Log in Error: " +task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                 }
             });
         }

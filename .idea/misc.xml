@@ -3,35 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.12" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/drawable/button_text.xml" value="0.122" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/drawable/input_text.xml" value="0.122" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/Tasks.xml" value="0.17844202898550723" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_comments.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_home.xml" value="0.22" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_image.xml" value="0.17844202898550723" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_login.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_login_student.xml" value="0.11" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_main.xml" value="0.15806159420289856" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_student.xml" value="0.1" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_student_home.xml" value="0.17844202898550723" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_student_login.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_student_page.xml" value="0.18" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_student_page2.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_student_task.xml" value="0.17844202898550723" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_supervisor.xml" value="0.1" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_supervisor_home.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_supervisor_login.xml" value="0.1671195652173913" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_tasks.xml" value="0.17844202898550723" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_uploads.xml" value="0.12" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/activity_uploads_page.xml" value="0.15" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/image_item.xml" value="0.17844202898550723" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/nav_header.xml" value="0.12" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/layout/navigation_header.xml" value="0.17481884057971014" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/menu/drawer_menu.xml" value="0.18" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/menu/navigation_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/SHYLAH SHILLAH/AndroidStudioProjects/ProjectHub2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.201" />
+        <entry key="app/src/main/res/layout/activity_comments.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/activity_image.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/activity_login_student.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/activity_student.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/activity_student_home.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/activity_student_page.xml" value="0.15353260869565216" />
+        <entry key="app/src/main/res/layout/activity_student_task.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_supervisor_home.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_supervisor_login.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.19375" />
+        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.19375" />
       </map>
     </option>
   </component>

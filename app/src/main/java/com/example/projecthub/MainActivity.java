@@ -18,19 +18,13 @@ public class MainActivity extends AppCompatActivity {
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,Supervisor_Login.class));
-                finish();
-            }
+        b1.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this,Supervisor_Login.class));
+            finish();
         });
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,LoginStudent.class));
-                finish();
-            }
+        b2.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this,LoginStudent.class));
+            finish();
         });
 
 

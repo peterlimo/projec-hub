@@ -82,8 +82,7 @@ public class studentPage extends AppCompatActivity {
         newStudent.updateChildren(myMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                {
+                if (task.isSuccessful()){
                     pd.dismiss();
                     startActivity(new Intent(studentPage.this,Student_Home.class));
                     finish();

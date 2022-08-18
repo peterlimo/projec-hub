@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "471937357050",
-    "project_id": "projecthub-1b717",
-    "storage_bucket": "projecthub-1b717.appspot.com"
+    "project_number": "661041350158",
+    "project_id": "projecthub-93ca9",
+    "storage_bucket": "projecthub-93ca9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:471937357050:android:b3edb762f8f12d91f22543",
+        "mobilesdk_app_id": "1:661041350158:android:fc4003b93eec8540c29e5f",
         "android_client_info": {
           "package_name": "com.example.projecthub"
         }
       },
       "oauth_client": [
         {
-          "client_id": "471937357050-1n2turg025omh4kd4ej9tip41jrrud50.apps.googleusercontent.com",
+          "client_id": "661041350158-ckbe7er49811613hdjikosiudr6fjcbe.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA_1itVaPmwrnc3O9jENw16PN7h6-qxHHo"
+          "current_key": "AIzaSyB4WLV4C-JRkIcbDtH5App_2Jl5i5ir2zI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "471937357050-1n2turg025omh4kd4ej9tip41jrrud50.apps.googleusercontent.com",
+              "client_id": "661041350158-ckbe7er49811613hdjikosiudr6fjcbe.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
